@@ -87,6 +87,7 @@ If Vercel shows a generic `404: NOT_FOUND` page:
 
 ### Notes for Production
 
+- Next.js is pinned to a patched 14.2.x release to avoid known vulnerabilities from older 14.2 builds.
 - Current storage uses filesystem JSON for demo/mock use.
 - For production persistence, replace with a managed DB (e.g. Firebase, Supabase, MongoDB Atlas, PostgreSQL).
 - Keep WhatsApp link updated with live business number.
