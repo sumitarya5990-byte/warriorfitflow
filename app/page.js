@@ -22,17 +22,23 @@ const locations = [
   {
     name: 'Location 1',
     address: 'WarriorFitFlow Arena, Sector 141, Noida, Uttar Pradesh',
-    mapUrl: 'https://share.google/hVL6mTNUD12TpsqRg'
+    embedUrl:
+      'https://www.google.com/maps?q=WarriorFitFlow%20Arena%20Sector%20141%20Noida&output=embed',
+    mapsLink: 'https://share.google/hVL6mTNUD12TpsqRg'
   },
   {
     name: 'Location 2',
     address: 'WarriorFitFlow Combat Hub, Greater Noida West, Uttar Pradesh',
-    mapUrl: 'https://share.google/FHCVRPxNRl6pbFrfg'
+    embedUrl:
+      'https://www.google.com/maps?q=WarriorFitFlow%20Combat%20Hub%20Greater%20Noida%20West&output=embed',
+    mapsLink: 'https://share.google/FHCVRPxNRl6pbFrfg'
   },
   {
     name: 'Location 3',
     address: 'WarriorFitFlow Performance Studio, Sector 75, Noida, Uttar Pradesh',
-    mapUrl: 'https://share.google/fcXjvAcIxue5w98RG'
+    embedUrl:
+      'https://www.google.com/maps?q=WarriorFitFlow%20Performance%20Studio%20Sector%2075%20Noida&output=embed',
+    mapsLink: 'https://share.google/fcXjvAcIxue5w98RG'
   }
 ];
 
@@ -140,11 +146,21 @@ export default function Home() {
               </div>
               <iframe
                 title={`${location.name} map`}
-                src={location.mapUrl}
+                src={location.embedUrl}
                 className="h-64 w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
+              <div className="border-t border-white/10 bg-black/30 p-4">
+                <a
+                  href={location.mapsLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex rounded-lg border border-white/30 px-3 py-2 text-xs font-semibold uppercase tracking-wide transition hover:border-ember hover:text-ember"
+                >
+                  Open in Google Maps
+                </a>
+              </div>
             </article>
           ))}
         </div>

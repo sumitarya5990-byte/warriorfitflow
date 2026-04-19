@@ -7,7 +7,7 @@ Modern, responsive dark-theme website for **WarriorFitFlow** built with **Next.j
 - Home, About, Programs, Locations, Testimonials, Contact sections
 - Sticky header + smooth scrolling navigation
 - Programs: Calisthenics / MMA / Both
-- 3 location cards with embedded map links
+- 3 location cards with embeddable Google Maps iframes + direct open-in-maps links
 - Enquiry form with frontend validation
 - API endpoint to store enquiries in local JSON (`data/enquiries.json`)
 - CTA buttons including **Join Now** + optional WhatsApp click-to-chat
@@ -90,3 +90,8 @@ If Vercel shows a generic `404: NOT_FOUND` page:
 - Current storage uses filesystem JSON for demo/mock use.
 - For production persistence, replace with a managed DB (e.g. Firebase, Supabase, MongoDB Atlas, PostgreSQL).
 - Keep WhatsApp link updated with live business number.
+
+
+## Maps Embedding Note
+
+Because shared short links (e.g. `share.google`) can refuse iframe embedding, the site uses `google.com/maps?q=...&output=embed` for the iframe and keeps your original shared link as the “Open in Google Maps” button.
