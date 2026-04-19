@@ -67,8 +67,12 @@ export default function Home() {
     <main className="relative">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-black/85 backdrop-blur">
         <div className="section-wrapper flex items-center justify-between py-4">
-          <a href="#home" className="text-lg font-extrabold tracking-wide">
-            WARRIOR<span className="text-ember">FITFLOW</span>
+          <a href="#home" className="flex items-center" aria-label="WarriorFitFlow home">
+            <img
+              src="https://www.warriorfitflow.com/assets/svg/logo.svg"
+              alt="WarriorFitFlow"
+              className="h-10 w-auto"
+            />
           </a>
           <nav className="hidden gap-6 text-sm font-medium md:flex">
             {navItems.map((item) => (
@@ -191,8 +195,15 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-white/10 py-8">
-        <div className="section-wrapper flex flex-col justify-between gap-2 text-sm text-zinc-400 sm:flex-row">
-          <p>© {new Date().getFullYear()} WarriorFitFlow. All rights reserved.</p>
+        <div className="section-wrapper flex flex-col justify-between gap-4 text-sm text-zinc-400 sm:flex-row sm:items-center">
+          <div className="flex items-center gap-3">
+            <img
+              src="https://www.warriorfitflow.com/assets/svg/logo.svg"
+              alt="WarriorFitFlow"
+              className="h-8 w-auto"
+            />
+            <p>© {new Date().getFullYear()} WarriorFitFlow. All rights reserved.</p>
+          </div>
           <a href="#home" className="hover:text-ember">
             Back to top ↑
           </a>

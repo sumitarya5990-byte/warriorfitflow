@@ -11,6 +11,7 @@ Modern, responsive dark-theme website for **WarriorFitFlow** built with **Next.j
 - Enquiry form with frontend validation
 - API endpoint to store enquiries in local JSON (`data/enquiries.json`)
 - CTA buttons including **Join Now** + optional WhatsApp click-to-chat
+- Brand logo sourced from official asset: `https://www.warriorfitflow.com/assets/svg/logo.svg`
 
 ## Tech Stack
 
