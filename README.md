@@ -17,7 +17,7 @@ Modern, responsive dark-theme website for **WarriorFitFlow** built with **Next.j
 - Frontend: Next.js (React)
 - Styling: Tailwind CSS
 - Backend/API: Next.js API Route (`app/api/enquiry/route.js`)
-- Data storage: local JSON file for mock backend persistence
+- Data storage: local JSON file for mock backend persistence (`/tmp` fallback on Vercel serverless runtime)
 
 ## Folder Structure
 
@@ -66,6 +66,16 @@ warriorfitflow/
   - `skill`
   - `location`
 - API validates and appends records to `data/enquiries.json`.
+
+
+## Vercel 404 Troubleshooting
+
+If Vercel shows a generic `404: NOT_FOUND` page:
+
+1. Confirm the project **Root Directory** in Vercel is this repository root (the folder containing `package.json`).
+2. Ensure the framework is detected as **Next.js** (this repo includes `vercel.json` with `framework: nextjs`).
+3. Re-deploy after clearing old build cache.
+4. If you are opening an old deployment URL, use the latest production domain from the Vercel dashboard.
 
 ## Deployment (Vercel preferred)
 

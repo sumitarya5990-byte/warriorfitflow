@@ -1,14 +1,29 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-const dataFilePath = path.join(process.cwd(), 'data', 'enquiries.json');
+export const runtime = 'nodejs';
+
+const localDataFilePath = path.join(process.cwd(), 'data', 'enquiries.json');
+const serverlessDataFilePath = '/tmp/warriorfitflow-enquiries.json';
+
+const getDataFilePath = () => {
+  // On Vercel/Serverless files under the project root are read-only at runtime.
+  // Use /tmp for writable ephemeral storage to prevent runtime write failures.
+  return process.env.VERCEL ? serverlessDataFilePath : localDataFilePath;
+};
 
 const validatePayload = (payload) => {
   if (!payload || typeof payload !== 'object') return false;
   const { name, phone, skill, location } = payload;
   const validSkill = ['Calisthenics', 'MMA', 'Both'].includes(skill);
   const validLocation = ['Location 1', 'Location 2', 'Location 3'].includes(location);
-  return Boolean(name?.trim()) && /^\d{10,15}$/.test(String(phone).trim()) && validSkill && validLocation;
+
+  return (
+    Boolean(name?.trim()) &&
+    /^\d{10,15}$/.test(String(phone).trim()) &&
+    validSkill &&
+    validLocation
+  );
 };
 
 export async function POST(request) {
@@ -19,12 +34,14 @@ export async function POST(request) {
       return Response.json({ error: 'Invalid payload' }, { status: 400 });
     }
 
+    const dataFilePath = getDataFilePath();
     await fs.mkdir(path.dirname(dataFilePath), { recursive: true });
 
     let existing = [];
     try {
       const file = await fs.readFile(dataFilePath, 'utf-8');
       existing = JSON.parse(file);
+      if (!Array.isArray(existing)) existing = [];
     } catch {
       existing = [];
     }
@@ -36,7 +53,7 @@ export async function POST(request) {
     };
 
     existing.push(entry);
-    await fs.writeFile(dataFilePath, JSON.stringify(existing, null, 2));
+    await fs.writeFile(dataFilePath, JSON.stringify(existing, null, 2), 'utf-8');
 
     return Response.json({ ok: true, id: entry.id }, { status: 201 });
   } catch {
