@@ -20,22 +20,22 @@ const programs = [
 
 const locations = [
   {
-    name: 'Location 1',
-    address: 'WarriorFitFlow Arena, Sector 141, Noida, Uttar Pradesh',
+    name: 'Warrior Fitflow Sector 141 Noida',
+    address: 'Warrior Fitflow Sector 141 Noida, Uttar Pradesh',
     lat: 28.5029,
     lon: 77.4107,
     mapsLink: 'https://share.google/hVL6mTNUD12TpsqRg'
   },
   {
-    name: 'Location 2',
-    address: 'WarriorFitFlow Combat Hub, Greater Noida West, Uttar Pradesh',
+    name: 'Warrior Fitflow Greater Noida',
+    address: 'Warrior Fitflow Greater Noida, Uttar Pradesh',
     lat: 28.5966,
     lon: 77.4538,
     mapsLink: 'https://share.google/FHCVRPxNRl6pbFrfg'
   },
   {
-    name: 'Location 3',
-    address: 'WarriorFitFlow Performance Studio, Sector 75, Noida, Uttar Pradesh',
+    name: 'Warrior Fitflow Noida Extension Greater Noida',
+    address: 'Warrior Fitflow Noida Extension Greater Noida, Uttar Pradesh',
     lat: 28.5785,
     lon: 77.3848,
     mapsLink: 'https://share.google/fcXjvAcIxue5w98RG'

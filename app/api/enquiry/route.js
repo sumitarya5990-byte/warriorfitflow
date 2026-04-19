@@ -33,7 +33,11 @@ const validatePayload = (payload) => {
   if (!payload || typeof payload !== 'object') return false;
   const { name, phone, skill, location } = payload;
   const validSkill = ['Calisthenics', 'MMA', 'Both'].includes(skill);
-  const validLocation = ['Location 1', 'Location 2', 'Location 3'].includes(location);
+  const validLocation = [
+    'Warrior Fitflow Sector 141 Noida',
+    'Warrior Fitflow Greater Noida',
+    'Warrior Fitflow Noida Extension Greater Noida'
+  ].includes(location);
 
   return (
     Boolean(name?.trim()) &&

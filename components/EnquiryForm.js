@@ -6,7 +6,7 @@ const initialState = {
   name: '',
   phone: '',
   skill: 'Calisthenics',
-  location: 'Location 1'
+  location: 'Warrior Fitflow Sector 141 Noida'
 };
 
 export default function EnquiryForm() {
@@ -135,9 +135,9 @@ export default function EnquiryForm() {
           onChange={handleChange}
           className="w-full rounded-xl border border-white/20 bg-black/40 px-4 py-3 text-sm outline-none transition focus:border-ember"
         >
-          <option>Location 1</option>
-          <option>Location 2</option>
-          <option>Location 3</option>
+          <option>Warrior Fitflow Sector 141 Noida</option>
+          <option>Warrior Fitflow Greater Noida</option>
+          <option>Warrior Fitflow Noida Extension Greater Noida</option>
         </select>
       </div>
 
