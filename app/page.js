@@ -22,25 +22,33 @@ const locations = [
   {
     name: 'Location 1',
     address: 'WarriorFitFlow Arena, Sector 141, Noida, Uttar Pradesh',
-    embedUrl:
-      'https://www.google.com/maps?q=WarriorFitFlow%20Arena%20Sector%20141%20Noida&output=embed',
+    lat: 28.5029,
+    lon: 77.4107,
     mapsLink: 'https://share.google/hVL6mTNUD12TpsqRg'
   },
   {
     name: 'Location 2',
     address: 'WarriorFitFlow Combat Hub, Greater Noida West, Uttar Pradesh',
-    embedUrl:
-      'https://www.google.com/maps?q=WarriorFitFlow%20Combat%20Hub%20Greater%20Noida%20West&output=embed',
+    lat: 28.5966,
+    lon: 77.4538,
     mapsLink: 'https://share.google/FHCVRPxNRl6pbFrfg'
   },
   {
     name: 'Location 3',
     address: 'WarriorFitFlow Performance Studio, Sector 75, Noida, Uttar Pradesh',
-    embedUrl:
-      'https://www.google.com/maps?q=WarriorFitFlow%20Performance%20Studio%20Sector%2075%20Noida&output=embed',
+    lat: 28.5785,
+    lon: 77.3848,
     mapsLink: 'https://share.google/fcXjvAcIxue5w98RG'
   }
 ];
+
+const getOpenStreetMapEmbedUrl = (lat, lon) => {
+  const delta = 0.01;
+  const bbox = [lon - delta, lat - delta, lon + delta, lat + delta].join(',');
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(
+    bbox
+  )}&layer=mapnik&marker=${lat}%2C${lon}`;
+};
 
 const testimonials = [
   {
@@ -146,7 +154,7 @@ export default function Home() {
               </div>
               <iframe
                 title={`${location.name} map`}
-                src={location.embedUrl}
+                src={getOpenStreetMapEmbedUrl(location.lat, location.lon)}
                 className="h-64 w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
