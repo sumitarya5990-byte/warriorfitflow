@@ -34,9 +34,9 @@ const validatePayload = (payload) => {
   const { name, phone, skill, location } = payload;
   const validSkill = ['Calisthenics', 'MMA', 'Both'].includes(skill);
   const validLocation = [
-    'Warrior Fitflow Sector 141 Noida',
-    'Warrior Fitflow Greater Noida',
-    'Warrior Fitflow Noida Extension Greater Noida'
+    'Sector 141',
+    'Greater Noida',
+    'Noida Extension Greater Noida'
   ].includes(location);
 
   return (

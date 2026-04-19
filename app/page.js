@@ -20,27 +20,33 @@ const programs = [
 
 const locations = [
   {
-    name: 'Warrior Fitflow Sector 141 Noida',
-    address: 'Warrior Fitflow Sector 141 Noida, Uttar Pradesh',
+    name: 'Sector 141',
+    address: 'Vijay Sri Sports Complex, Sector 141, Noida, Uttar Pradesh 201304',
     lat: 28.5029,
     lon: 77.4107,
     mapsLink: 'https://share.google/hVL6mTNUD12TpsqRg'
   },
   {
-    name: 'Warrior Fitflow Greater Noida',
-    address: 'Warrior Fitflow Greater Noida, Uttar Pradesh',
+    name: 'Greater Noida',
+    address:
+      'Gate No.2, Plot No : N-31 (Victory World School), 3rd Floor, Swarn Nagari, near MSX Mall, Greater Noida, Uttar Pradesh 201315',
     lat: 28.5966,
     lon: 77.4538,
     mapsLink: 'https://share.google/FHCVRPxNRl6pbFrfg'
   },
   {
-    name: 'Warrior Fitflow Noida Extension Greater Noida',
-    address: 'Warrior Fitflow Noida Extension Greater Noida, Uttar Pradesh',
+    name: 'Noida Extension Greater Noida',
+    address:
+      'Saundaryam St, behind Greater Noida West Road, west, Iteda, Greater Noida, Uttar Pradesh 201318',
     lat: 28.5785,
     lon: 77.3848,
     mapsLink: 'https://share.google/fcXjvAcIxue5w98RG'
   }
 ];
+
+const whatsappNumber =
+  (process.env.whatsapp_number || process.env.WHATSAPP_NUMBER || '919999999999').replace(/[^\d]/g, '');
+const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
 const getOpenStreetMapEmbedUrl = (lat, lon) => {
   const delta = 0.01;
@@ -206,7 +212,7 @@ export default function Home() {
               Tell us your preferred program and location. Our team will call you back and help you with your first class booking.
             </p>
             <a
-              href="https://wa.me/919999999999"
+              href={whatsappLink}
               target="_blank"
               rel="noreferrer"
               className="mt-6 inline-block rounded-xl border border-green-500/60 bg-green-500/10 px-5 py-3 text-sm font-semibold text-green-300 transition hover:bg-green-500/20"

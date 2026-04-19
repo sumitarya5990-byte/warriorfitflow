@@ -54,12 +54,17 @@ warriorfitflow/
    export enquiry_webhook="https://webhook.site/your-webhook-id"
    ```
 
-3. Run development server
+3. (Optional) configure WhatsApp number
+   ```bash
+   export whatsapp_number="919999999999"
+   ```
+
+4. Run development server
    ```bash
    npm run dev
    ```
 
-4. Open in browser
+5. Open in browser
    ```txt
    http://localhost:3000
    ```
@@ -91,7 +96,9 @@ If Vercel shows a generic `404: NOT_FOUND` page:
 1. Push repository to GitHub.
 2. Import project in [Vercel](https://vercel.com).
 3. Framework preset: **Next.js**.
-4. Add environment variable `enquiry_webhook` in Vercel Project Settings (recommended).
+4. Add environment variables in Vercel Project Settings as needed:
+   - `enquiry_webhook`
+   - `whatsapp_number`
 5. Deploy.
 
 > After changing Vercel environment variables, always trigger a fresh redeploy so serverless functions use updated values.
