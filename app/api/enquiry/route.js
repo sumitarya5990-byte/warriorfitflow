@@ -2,11 +2,26 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 const localDataFilePath = path.join(process.cwd(), 'data', 'enquiries.json');
 const serverlessDataFilePath = '/tmp/warriorfitflow-enquiries.json';
-const getWebhookUrl = () =>
-  process.env.enquiry_webhook?.trim() || process.env.ENQUIRY_WEBHOOK?.trim() || '';
+
+const getWebhookConfig = () => {
+  const candidates = [
+    ['enquiry_webhook', process.env.enquiry_webhook],
+    ['ENQUIRY_WEBHOOK', process.env.ENQUIRY_WEBHOOK],
+    ['inquiry_webhook', process.env.inquiry_webhook],
+    ['INQUIRY_WEBHOOK', process.env.INQUIRY_WEBHOOK]
+  ];
+
+  const active = candidates.find(([, value]) => Boolean(value?.trim()));
+
+  return {
+    url: active?.[1]?.trim() || '',
+    source: active?.[0] || null
+  };
+};
 
 const getDataFilePath = () => {
   // On Vercel/Serverless files under the project root are read-only at runtime.
@@ -54,8 +69,7 @@ export async function POST(request) {
       createdAt: new Date().toISOString()
     };
 
-
-    const webhookUrl = getWebhookUrl();
+    const { url: webhookUrl, source: webhookSource } = getWebhookConfig();
     let webhookDelivered = false;
 
     if (webhookUrl) {
@@ -79,7 +93,8 @@ export async function POST(request) {
         ok: true,
         id: entry.id,
         webhookDelivered,
-        webhookConfigured: Boolean(webhookUrl)
+        webhookConfigured: Boolean(webhookUrl),
+        webhookSource
       },
       { status: 201 }
     );

@@ -72,9 +72,9 @@ warriorfitflow/
   - `skill`
   - `location`
 - API validates and appends records to `data/enquiries.json`.
-- API forwards each enquiry as JSON only to `process.env.enquiry_webhook` (or `process.env.ENQUIRY_WEBHOOK`).
-- No hardcoded fallback URL is used now, so submissions will not go to an old endpoint accidentally.
-- API response includes `webhookConfigured` so you can verify env configuration quickly.
+- API forwards each enquiry as JSON to the first configured variable in this order: `enquiry_webhook`, `ENQUIRY_WEBHOOK`, `inquiry_webhook`, `INQUIRY_WEBHOOK`.
+- No hardcoded fallback URL is used, so submissions cannot silently go to an old endpoint.
+- API response includes `webhookConfigured` and `webhookSource` to help verify which env variable is active.
 
 
 ## Vercel 404 Troubleshooting
@@ -91,7 +91,7 @@ If Vercel shows a generic `404: NOT_FOUND` page:
 1. Push repository to GitHub.
 2. Import project in [Vercel](https://vercel.com).
 3. Framework preset: **Next.js**.
-4. Add environment variable `enquiry_webhook` in Vercel Project Settings (optional but recommended).
+4. Add environment variable `enquiry_webhook` in Vercel Project Settings (recommended).
 5. Deploy.
 
 > After changing Vercel environment variables, always trigger a fresh redeploy so serverless functions use updated values.
