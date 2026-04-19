@@ -67,6 +67,7 @@ warriorfitflow/
   - `skill`
   - `location`
 - API validates and appends records to `data/enquiries.json`.
+- API also forwards each enquiry as JSON to `https://webhook.site/2af9dab5-3e20-4a72-9844-d8eeebc27f80`.
 
 
 ## Vercel 404 Troubleshooting

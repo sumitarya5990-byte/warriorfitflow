@@ -5,6 +5,7 @@ export const runtime = 'nodejs';
 
 const localDataFilePath = path.join(process.cwd(), 'data', 'enquiries.json');
 const serverlessDataFilePath = '/tmp/warriorfitflow-enquiries.json';
+const WEBHOOK_URL = 'https://webhook.site/2af9dab5-3e20-4a72-9844-d8eeebc27f80';
 
 const getDataFilePath = () => {
   // On Vercel/Serverless files under the project root are read-only at runtime.
@@ -52,10 +53,23 @@ export async function POST(request) {
       createdAt: new Date().toISOString()
     };
 
+
+    let webhookDelivered = false;
+    try {
+      const webhookResponse = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(entry)
+      });
+      webhookDelivered = webhookResponse.ok;
+    } catch {
+      webhookDelivered = false;
+    }
+
     existing.push(entry);
     await fs.writeFile(dataFilePath, JSON.stringify(existing, null, 2), 'utf-8');
 
-    return Response.json({ ok: true, id: entry.id }, { status: 201 });
+    return Response.json({ ok: true, id: entry.id, webhookDelivered }, { status: 201 });
   } catch {
     return Response.json({ error: 'Server error' }, { status: 500 });
   }
